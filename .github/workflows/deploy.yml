@@ -1,28 +1,28 @@
-name: Deploy Frontend to GitHub Pages
+name: Deploy Vite Frontend to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Or 'master' if your branch name is different
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
         working-directory: frontend
 
-      - name: Build Project
+      - name: Build project
         run: npm run build
         working-directory: frontend
 
@@ -30,4 +30,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: frontend/dist  # use 'frontend/build' if using CRA
+          publish_dir: frontend/dist
