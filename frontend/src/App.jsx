@@ -39,7 +39,7 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/seeking_job">
         <Navbar />
         <Routes>
           <Route path="/login" element={<Login />} />
